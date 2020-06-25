@@ -1,0 +1,15 @@
+image: 
+  name: registry.gitlab.com/famedly/containers/flutter-dockerimages:stable
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+- coverage
+- publish
+
+code_analyze:
+  stage: coverage
+  script:
+    - flutter format lib/ --set-exit-if-changed
+    - flutter analyze
