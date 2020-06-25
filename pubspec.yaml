@@ -1,0 +1,11 @@
+name: web_multiple_tab_detector
+description: Detect the amount of tabs running in web
+version: 0.1.0
+author: Famedly
+homepage: https://famedly.com
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  http: ^0.12.1
