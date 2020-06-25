@@ -20,7 +20,7 @@ int getTabs(String name) {
   return 0;
 }
 
-int setTabs(String name, int number) {
+void setTabs(String name, int number) {
   // no-op
 }
 

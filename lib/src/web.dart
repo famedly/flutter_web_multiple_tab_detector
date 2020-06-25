@@ -21,7 +21,7 @@ import 'dart:html';
 int getTabs(String name) {
   try {
     final n = int.parse(window.localStorage[name]);
-    return n < 0 : 0 : n;
+    return n < 0 ? 0 : n;
   } catch (_) {
     return 0;
   }
