@@ -1,6 +1,6 @@
 name: web_multiple_tab_detector
 description: This package makes it possible to detect how many browser tabs in the webbrowser your flutter app is currently running in.
-version: 0.1.0
+version: 0.2.0
 homepage: https://famedly.com
 
 environment:
