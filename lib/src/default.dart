@@ -27,3 +27,7 @@ void setTabs(String name, int number) {
 void register(String name) {
   // no-op
 }
+
+Future<bool> isSingleTab(String name) async {
+  return true;
+}

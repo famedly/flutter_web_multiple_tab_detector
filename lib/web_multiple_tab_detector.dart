@@ -37,4 +37,11 @@ abstract class WebMultipleTabDetector {
   static int getTabs() {
     return api.getTabs(_name);
   }
+
+  /// Return, if the tab is a single tab
+  /// This does more error detection, in case the storage of
+  /// the amount of tabs is wrong.
+  static Future<bool> isSingleTab() async {
+    return api.isSingleTab(_name);
+  }
 }
