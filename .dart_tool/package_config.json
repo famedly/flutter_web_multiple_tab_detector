@@ -5,10 +5,10 @@
       "name": "web_multiple_tab_detector",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.12"
     }
   ],
-  "generated": "2020-07-03T12:02:38.201754Z",
+  "generated": "2022-02-16T08:10:15.775691Z",
   "generator": "pub",
-  "generatorVersion": "2.8.4"
+  "generatorVersion": "2.16.1"
 }

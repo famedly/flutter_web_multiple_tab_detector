@@ -32,7 +32,7 @@ String randomString([int length = 50]) {
 
 int getTabs(String name) {
   try {
-    final n = int.parse(window.localStorage[name]);
+    final n = int.parse(window.localStorage[name]!);
     return n < 0 ? 0 : n;
   } catch (_) {
     return 0;
@@ -56,7 +56,7 @@ void register(String name) {
 
   window.onStorage.listen((evt) {
     if (evt.key == '$name-ping') {
-      final val = evt.newValue;
+      final val = evt.newValue!;
       if (val.split('|')[0] != _instanceId) {
         window.localStorage['$name-pong'] =
             _instanceId + '|' + DateTime.now().toString();

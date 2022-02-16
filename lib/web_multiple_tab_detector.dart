@@ -21,7 +21,7 @@ library web_multiple_tab_detector;
 import 'src/default.dart' if (dart.library.html) 'src/web.dart' as api;
 
 abstract class WebMultipleTabDetector {
-  static String _name;
+  static late String _name;
 
   /// Registers the current tab / flutter instance.
   /// Optionally a [name] can be set which will be used
