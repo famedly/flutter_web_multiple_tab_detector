@@ -1,3 +1,6 @@
+## [0.4.0] - 2026-07-29
+* refactor: make package wasm compatible and add example
+
 ## [0.3.0] - 2022-02-16
 * refactor: Update to null safety
 
