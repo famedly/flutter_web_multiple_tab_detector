@@ -1,0 +1,38 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  errors:
+    # TODO: Refactor one after another and enable:
+    todo: ignore
+    avoid_bool_literals_in_conditional_expressions: ignore
+    unnecessary_null_checks: ignore
+    cancel_subscriptions: ignore
+    combinators_ordering: ignore
+    unnecessary_statements: ignore
+    sort_pub_dependencies: ignore
+  plugins:
+    - dart_code_linter
+  exclude:
+    - 'example_app/**'
+
+dart_code_linter:
+  rules:
+    # TODO: Refactor one after another and enable:
+    - prefer-match-file-name: false
+    - member-ordering: false
+    - prefer-extracting-callbacks: false
+    - prefer-single-widget-per-file: false
+    - avoid-redundant-async: false
+    - avoid-global-state: false
+    - avoid-returning-widgets: false
+    - avoid-unnecessary-conditionals: false
+    - prefer-immediate-return: false
+    - avoid-unrelated-type-assertions: false
+    - avoid-wrapping-in-padding: false
+    - no-equal-then-else: false
+    - avoid-dynamic: false
+    - prefer-first: false
+    - prefer-enums-by-name: false
+    - prefer-media-query-direct-access: false
+    - prefer-correct-edge-insets-constructor: false
+    - avoid-unnecessary-type-assertions: false

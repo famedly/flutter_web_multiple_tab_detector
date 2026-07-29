@@ -16,7 +16,7 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-library web_multiple_tab_detector;
+library;
 
 import 'src/default.dart' if (dart.library.html) 'src/web.dart' as api;
 

@@ -16,8 +16,10 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import 'dart:html';
+import 'dart:js_interop';
 import 'dart:math';
+
+import 'package:web/web.dart';
 
 String randomString([int length = 50]) {
   var result = '';
@@ -32,7 +34,7 @@ String randomString([int length = 50]) {
 
 int getTabs(String name) {
   try {
-    final n = int.parse(window.localStorage[name]!);
+    final n = int.parse(window.localStorage.getItem(name) ?? '0');
     return n < 0 ? 0 : n;
   } catch (_) {
     return 0;
@@ -40,7 +42,7 @@ int getTabs(String name) {
 }
 
 void setTabs(String name, int number) {
-  window.localStorage[name] = number.toString();
+  window.localStorage.setItem(name, number.toString());
 }
 
 bool _pongReceived = false;
@@ -50,22 +52,33 @@ void register(String name) {
   _instanceId = randomString();
   setTabs(name, getTabs(name) + 1);
 
-  window.onUnload.listen((_) {
-    setTabs(name, getTabs(name) - 1);
-  });
+  window.addEventListener(
+    'unload',
+    (Event event) {
+      setTabs(name, getTabs(name) - 1);
+    }.toJS,
+  ); // The callback must be converted to a JavaScript function
 
-  window.onStorage.listen((evt) {
-    if (evt.key == '$name-ping') {
-      final val = evt.newValue!;
-      if (val.split('|')[0] != _instanceId) {
-        window.localStorage['$name-pong'] =
-            _instanceId + '|' + DateTime.now().toString();
+  window.addEventListener(
+    'storage',
+    (Event event) {
+      final evt = event as StorageEvent;
+
+      if (evt.key == '$name-ping') {
+        final val = evt.newValue;
+        if (val != null && val.split('|')[0] != _instanceId) {
+          window.localStorage.setItem(
+            '$name-pong',
+            '$_instanceId|${DateTime.now()}',
+          );
+        }
       }
-    }
-    if (evt.key == '$name-pong') {
-      _pongReceived = true;
-    }
-  });
+
+      if (evt.key == '$name-pong') {
+        _pongReceived = true;
+      }
+    }.toJS,
+  );
 }
 
 Future<bool> isSingleTab(String name) async {
@@ -74,8 +87,7 @@ Future<bool> isSingleTab(String name) async {
     return true;
   }
   // send ping to other tabs
-  window.localStorage['$name-ping'] =
-      _instanceId + '|' + DateTime.now().toString();
+  window.localStorage.setItem('$name-ping', '$_instanceId|${DateTime.now()}');
   int counter = 100;
   while (!_pongReceived && counter > 0) {
     await Future.delayed(Duration(milliseconds: 50));
