@@ -1,0 +1,3 @@
+# Exclude one or more paths from being scanned. Supports glob syntax.
+exclude:
+  - "example_app/**"
